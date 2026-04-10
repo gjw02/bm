@@ -1,239 +1,215 @@
-/* 全局变量，方便修改颜色主题 */
+/* =========================================
+   全局变量：赛博朋克霓虹配色
+========================================= */
 :root {
-    --bg-color: #f9fafb;      /* 网页背景色：极浅的灰色 */
-    --card-bg: #ffffff;       /* 卡片背景色：纯白 */
-    --text-main: #111827;     /* 主标题文字颜色：深灰/黑 */
-    --text-muted: #6b7280;    /* 描述文字颜色：中灰 */
-    --accent-color: #3b82f6;  /* 点缀色/标题色：清新的蓝色 */
+    --bg-color: #050510;      
+    /* 微弱的全息蓝底色，实现毛玻璃效果 */
+    --card-bg: rgba(0, 255, 255, 0.05); 
+    --text-main: #00FFFF;     
+    --text-muted: #8b9bb4;    
+    --accent-color: #FF00FF;  
 }
 
-/* 基础样式重置 */
+/* 自定义滚动条 (霓虹光效) */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.5); }
+::-webkit-scrollbar-thumb {
+    background: var(--text-main); 
+    border-radius: 10px;
+    box-shadow: 0 0 10px var(--text-main); 
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-color); 
+    box-shadow: 0 0 15px var(--accent-color);
+}
+
+/* 基础样式 */
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-family: 'Orbitron', "Courier New", Courier, monospace, -apple-system, sans-serif;
     background-color: var(--bg-color);
-    background-image: url('background.jpg');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
     color: var(--text-main);
     margin: 0;
     padding: 0;
     line-height: 1.6;
-}
-
-/* 响应式设计 - 手机端 */
-@media (max-width: 768px) {
-    body {
-        background-attachment: scroll;
-        background-size: auto 100%;
-        overflow-x: auto;
-        overflow-y: auto;
-    }
-    
-    /* 调整容器宽度，确保内容适配手机屏幕 */
-    .container {
-        max-width: 100%;
-        padding: 0 1rem 3rem;
-    }
-    
-    /* 调整网格布局，在手机端显示更多列 */
-    .bookmark-grid {
-        grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
-        gap: 1rem;
-    }
-    
-    /* 调整卡片大小，适应手机屏幕 */
-    .bookmark-card {
-        width: 32px;
-        height: 32px;
-        padding: 0.5rem;
-    }
-    
-    /* 调整图标大小 */
-    .bookmark-favicon {
-        width: 24px;
-        height: 24px;
-    }
-    
-    /* 调整标题大小 */
-    .bookmark-title {
-        font-size: 0.7rem;
-    }
-    
-    /* 调整头部 padding */
-    header {
-        padding: 4rem 1rem 2rem;
-    }
-}
-
-/* 头部样式 */
-header {
-    text-align: center;
-    padding: 6rem 1rem 3rem;
-    background-color: transparent;
-    margin-bottom: 2rem;
-}
-
-
-
-/* 主体容器 */
-.container {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 0 1.5rem 4rem;
-    background-color: transparent;
-}
-
-/* 网格布局：自适应屏幕大小，自动换行 */
-.bookmark-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
-    gap: 1.5rem;
-    justify-items: center;
-}
-
-/* 书签项容器 */
-.bookmark-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    text-align: center;
-}
-
-/* 书签卡片设计 */
-.bookmark-card {
-    background: transparent;
-    border-radius: 12px;
-    padding: 0.75rem;
-    text-decoration: none;
-    color: inherit;
-    /* 柔和的默认阴影 */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid rgba(243, 244, 246, 0.3);
+    overflow-x: hidden;
     position: relative;
-    backdrop-filter: blur(8px);
-    width: 36px;
-    height: 36px;
-    text-align: center;
+    min-height: 100vh;
 }
 
-/* 鼠标悬停时的浮动效果 */
-.bookmark-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-    border-color: #e5e7eb;
-    background: rgba(255, 255, 255, 0.3);
-}
-
-/* 卡片内部元素排版 */
-.bookmark-title {
-    font-size: 0.75rem;
-    font-weight: 500;
-    margin-top: 0.5rem;
-    color: var(--text-main);
-    word-break: break-all;
-    width: 100%;
-    text-align: center;
-}
-
-.bookmark-favicon {
-    width: 24px;
-    height: 24px;
-    margin-right: 0;
-    vertical-align: middle;
-    border-radius: 4px;
-}
-
-.bookmark-desc,
-.bookmark-domain {
-    display: none;
-}
-
-/* 网址前面的小圆点装饰 */
-.bookmark-domain::before {
-    content: "";
-    display: inline-block;
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background-color: #d1d5db;
-    margin-right: 6px;
-}
-
-
-
-
-
-/* 网站图标 */
-.bookmark-favicon {
-    width: 30px;
-    height: 30px;
-    margin: 0;
-    vertical-align: middle;
-    border-radius: 3px;
-}
-
-/* 登录界面 */
-.login-container {
+/* =========================================
+   动态声波/数据流背景
+========================================= */
+body::before {
+    content: '';
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 3000;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    background: linear-gradient(-45deg, #1a0b33, #3a1063, #152b52, #14082e);
+    background-size: 400% 400%;
+    animation: cyberGradient 15s ease infinite;
+    z-index: -4;
 }
 
-.login-form {
-    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-    padding: 1.5rem;
-    border-radius: 16px;
-    width: 90%;
-    max-width: 320px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
-    text-align: center;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+@keyframes cyberGradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.wave-background {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    z-index: -3;
+    overflow: hidden;
+    pointer-events: none;
+    opacity: 1; 
+}
+
+.wave-layer {
+    position: absolute;
+    width: 200vw; height: 200vw;
+    border-radius: 43% 57% 40% 60% / 40% 45% 55% 60%;
+    border: 2px solid rgba(0, 255, 255, 0.35);
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.15), inset 0 0 50px rgba(0, 255, 255, 0.1);
+    animation: waveSpin 20s infinite linear;
+}
+
+.wave-layer:nth-child(1) { top: 40%; left: -50%; background: rgba(255, 0, 255, 0.05); border-color: rgba(255, 0, 255, 0.4); animation-duration: 25s; }
+.wave-layer:nth-child(2) { top: 60%; left: -30%; background: rgba(0, 255, 255, 0.05); animation-direction: reverse; animation-duration: 30s; }
+.wave-layer:nth-child(3) { top: 50%; left: -60%; border-radius: 50% 50% 40% 60% / 60% 40% 50% 50%; border-color: rgba(150, 0, 255, 0.3); animation-duration: 22s; }
+
+@keyframes waveSpin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.vignette {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    background: radial-gradient(circle at center, transparent 50%, rgba(0, 0, 0, 0.4) 100%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* =========================================
+   响应式与布局
+========================================= */
+@media (max-width: 768px) {
+    .container { padding: 0 1rem 3rem; }
+    .bookmark-grid { grid-template-columns: repeat(auto-fill, minmax(70px, 1fr)); gap: 1rem; }
+    .bookmark-card { width: 32px; height: 32px; padding: 0.5rem; }
+    .bookmark-favicon, .fallback-icon { width: 24px !important; height: 24px !important; font-size: 0.9rem !important; }
+    .bookmark-title { font-size: 0.7rem; }
+    header { padding: 4rem 1rem 2rem; }
+}
+
+header { text-align: center; padding: 6rem 1rem 3rem; z-index: 1; }
+.container { max-width: 900px; margin: 0 auto; padding: 0 1.5rem 4rem; z-index: 1; }
+.bookmark-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); gap: 1.5rem; justify-items: center; }
+
+/* =========================================
+   书签卡片与动画 (全息毛玻璃)
+========================================= */
+.bookmark-item {
+    display: flex; flex-direction: column; align-items: center; width: 100%; text-align: center;
+    animation: fadeUpIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) backwards;
+}
+
+@keyframes fadeUpIn {
+    from { opacity: 0; transform: translateY(30px) scale(0.9); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.bookmark-card {
+    background: var(--card-bg);
+    border-radius: 12px; padding: 0.75rem; text-decoration: none; color: inherit;
+    border: 1px solid var(--text-main);
+    box-shadow: 0 0 12px rgba(0, 255, 255, 0.4), inset 0 0 15px rgba(0, 255, 255, 0.15);
+    transition: all 0.3s ease;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    position: relative; 
     backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    width: 36px; height: 36px;
 }
 
-.login-form h2 {
-    margin-top: 0;
-    color: var(--accent-color);
-    font-size: 1.25rem;
-    margin-bottom: 1.5rem;
-    font-weight: 600;
-}
-
-.login-form input {
-    width: 100%;
-    padding: 0.75rem;
-    border: 1px solid #e5e7eb;
-    border-radius: 8px;
-    font-size: 1rem;
-    margin-bottom: 1.25rem;
-    transition: all 0.3s ease;
-    box-sizing: border-box;
-}
-
-.login-form input:focus {
-    outline: none;
+.bookmark-card:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 0 25px rgba(255, 0, 255, 0.9), 0 0 40px rgba(255, 0, 255, 0.5);
     border-color: var(--accent-color);
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    background: rgba(255, 0, 255, 0.1);
 }
 
+.bookmark-title {
+    font-size: 0.75rem; font-weight: bold; margin-top: 0.5rem;
+    color: var(--accent-color); word-break: break-all; width: 100%; text-align: center;
+    text-shadow: 0 0 6px rgba(255, 0, 255, 0.6);
+    transition: all 0.2s ease;
+}
+
+.login-form h2:hover, .bookmark-title:hover { animation: glitchEffect 0.2s linear infinite; cursor: crosshair;}
+@keyframes glitchEffect {
+    0% { text-shadow: 2px 0 var(--accent-color), -2px 0 var(--text-main); transform: translate(1px, 0); }
+    50% { text-shadow: -2px 0 var(--accent-color), 2px 0 var(--text-main); transform: translate(-1px, 0); }
+    100% { text-shadow: 2px 0 var(--accent-color), -2px 0 var(--text-main); transform: translate(1px, 0); }
+}
+
+.bookmark-favicon {
+    width: 30px; height: 30px; border-radius: 4px;
+    filter: drop-shadow(0 0 4px rgba(0, 255, 255, 0.8)); transition: transform 0.3s ease;
+}
+.bookmark-card:hover .bookmark-favicon { transform: scale(1.1); }
+
+.fallback-icon {
+    width: 30px; height: 30px; border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem; font-weight: bold; color: var(--text-main);
+    background: rgba(0, 255, 255, 0.1); border: 1px solid var(--text-main);
+    text-shadow: 0 0 5px var(--text-main); box-shadow: inset 0 0 8px rgba(0, 255, 255, 0.3);
+    transition: all 0.3s ease; font-family: 'Orbitron', sans-serif; text-transform: uppercase;
+}
+
+.bookmark-card:hover .fallback-icon {
+    color: var(--accent-color); border-color: var(--accent-color);
+    background: rgba(255, 0, 255, 0.1); text-shadow: 0 0 8px var(--accent-color);
+    box-shadow: inset 0 0 10px rgba(255, 0, 255, 0.5); transform: scale(1.1);
+}
+
+/* =========================================
+   登录界面：赛博终端风格
+========================================= */
+.login-container {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(10, 5, 25, 0.85); backdrop-filter: blur(12px);
+    display: flex; align-items: center; justify-content: center; z-index: 3000;
+}
+.login-form {
+    background: var(--card-bg); padding: 2rem 1.5rem; border-radius: 12px;
+    width: 90%; max-width: 320px; box-shadow: 0 0 40px rgba(0, 255, 255, 0.5);
+    border: 2px solid var(--text-main); text-align: center; position: relative; overflow: hidden;
+}
+.login-form::before {
+    content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px;
+    background: var(--accent-color); box-shadow: 0 0 10px var(--accent-color);
+}
+.login-form h2 {
+    margin-top: 0; color: var(--accent-color); font-size: 1.3rem; margin-bottom: 1.5rem;
+    font-weight: bold; text-shadow: 0 0 12px rgba(255, 0, 255, 0.8); letter-spacing: 2px;
+}
+.login-form input {
+    width: 100%; padding: 0.8rem; background: rgba(0, 20, 40, 0.6);
+    border: 1px solid var(--text-main); color: #fff; border-radius: 6px; font-size: 1rem;
+    margin-bottom: 1.5rem; transition: all 0.3s ease; box-sizing: border-box; font-family: inherit;
+}
+.login-form input:focus {
+    outline: none; border-color: var(--accent-color);
+    box-shadow: 0 0 15px rgba(255, 0, 255, 0.6) inset, 0 0 15px rgba(255, 0, 255, 0.6); background: rgba(40, 0, 40, 0.6);
+}
 .login-form .btn {
-    width: 100%;
-    padding: 0.875rem;
-    font-weight: 500;
-    border-radius: 8px;
-    transition: all 0.3s ease;
+    width: 100%; padding: 0.9rem; font-weight: bold; font-size: 1.1rem; border-radius: 6px;
+    background-color: transparent; color: var(--text-main); border: 2px solid var(--text-main);
+    cursor: pointer; transition: all 0.3s ease; text-shadow: 0 0 8px rgba(0, 255, 255, 0.8);
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.3) inset; font-family: inherit;
+}
+.login-form .btn:hover {
+    background-color: var(--text-main); color: #000; box-shadow: 0 0 30px rgba(0, 255, 255, 1); text-shadow: none;
 }
