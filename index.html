@@ -3,154 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的私人书签</title>
+    <title>私人赛博终端</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- 登录界面 -->
     <div class="login-container" id="loginContainer">
         <div class="login-form">
-            <h2>请输入访问口令</h2>
-            <input type="password" id="passwordInput" placeholder="输入口令">
-            <button class="btn btn-primary" onclick="checkPassword()">登录</button>
+            <h2>SYSTEM_LOGIN</h2>
+            <input type="password" id="passwordInput" placeholder="Enter Access Code">
+            <button class="btn" onclick="checkPassword()">INITIALIZE</button>
         </div>
     </div>
 
+    <div class="wave-background">
+        <div class="wave-layer"></div>
+        <div class="wave-layer"></div>
+        <div class="wave-layer"></div>
+    </div>
+    <div class="vignette"></div>
+
     <header>
-    </header>
+        </header>
 
     <div class="container">
         <div class="bookmark-grid">
-        </div>
+            </div>
     </div>
 
-
-
-    <script>
-        // 登录功能
-        const PASSWORD = '123456'; // 可以修改为你喜欢的口令
-
-        // 检查登录状态
-        function checkLoginStatus() {
-            const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
-            if (isLoggedIn) {
-                document.getElementById('loginContainer').style.display = 'none';
-            }
-        }
-
-        // 检查密码
-        function checkPassword() {
-            const password = document.getElementById('passwordInput').value;
-            if (password === PASSWORD) {
-                localStorage.setItem('isLoggedIn', 'true');
-                document.getElementById('loginContainer').style.display = 'none';
-            } else {
-                alert('口令错误，请重试');
-                document.getElementById('passwordInput').value = '';
-            }
-        }
-
-        // 支持回车键登录
-        document.getElementById('passwordInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                checkPassword();
-            }
-        });
-
-        // 书签数据
-        let bookmarks = JSON.parse(localStorage.getItem('bookmarks')) || [
-            {
-                title: '书源',
-                url: 'https://yuedu.miaogongzi.net/gx.html',
-                desc: '喵公子书源'
-            },
-            {
-                title: '追剧吧',
-                url: 'https://www.zhuiju.us/',
-                desc: '4k-高清-网盘资源'
-            },
-            {
-                title: '图片美化',
-                url: 'https://imgupscaler.ai',
-                desc: '全球顶尖的图片美化平台，寻找设计灵感'
-            },
-            {
-                title: 'ins下载器',
-                url: 'https://saveinta.com/en',
-                desc: 'Down Instagram Video'
-            },
-            {
-                title: '无水印下载',
-                url: 'https://dy.kukutool.com/',
-                desc: '无水印解析130多个平台视频、实况、图片等'
-            },
-            {
-                title: 'po18',
-                url: 'https://www.po18dk.com/',
-                desc: '小说网'
-            },
-            {
-                title: '零界',
-                url: 'https://xn--koy113e.com/',
-                desc: ''
-            },
-            {
-                title: 'seedhub',
-                url: 'https://www.seedhub.cc/',
-                desc:  '海量电影、剧集、动漫资源，免费无广告支持4K、蓝光原盘，多设备访问'
-            },
-            {
-                title: 'SmS',
-                url: 'https://h5.star77.shop/profile',
-                desc: '国际验证码接收平台'
-            },
-            {
-                title: 'Hellotik',
-                url: 'https://www.hellotik.app/zh',
-                desc: '无水印解析工具'
-            }
-        ];
-
-        // 渲染书签
-        function renderBookmarks() {
-            const bookmarkGrid = document.querySelector('.bookmark-grid');
-            bookmarkGrid.innerHTML = '';
-
-            bookmarks.forEach((bookmark, index) => {
-                const url = new URL(bookmark.url);
-                const domain = url.hostname;
-                const faviconUrl = `${url.protocol}//${domain}/favicon.ico`;
-                
-                // 创建书签容器
-                const bookmarkContainer = document.createElement('div');
-                bookmarkContainer.className = 'bookmark-item';
-                
-                // 创建书签卡片
-                const bookmarkCard = document.createElement('a');
-                bookmarkCard.href = bookmark.url;
-                bookmarkCard.target = '_blank';
-                bookmarkCard.className = 'bookmark-card';
-                bookmarkCard.title = bookmark.desc;
-                bookmarkCard.innerHTML = `
-                    <img src="${faviconUrl}" class="bookmark-favicon" onerror="this.style.display='none'">
-                `;
-                
-                // 创建标题元素
-                const titleElement = document.createElement('div');
-                titleElement.className = 'bookmark-title';
-                titleElement.textContent = bookmark.title;
-                
-                // 组装结构
-                bookmarkContainer.appendChild(bookmarkCard);
-                bookmarkContainer.appendChild(titleElement);
-                bookmarkGrid.appendChild(bookmarkContainer);
-            });
-        }
-
-        // 初始化
-        checkLoginStatus();
-        renderBookmarks();
-    </script>
+    <script src="app.js"></script>
 </body>
 </html>
