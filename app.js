@@ -41,7 +41,10 @@ let bookmarks = JSON.parse(localStorage.getItem('bookmarks')) || [
     { title: 'seedhub', url: 'https://www.seedhub.cc/', desc: '海量电影资源' },
     { title: 'SmS', url: 'https://h5.star77.shop/profile', desc: '国际验证码' },
     { title: 'Hellotik', url: 'https://www.hellotik.app/zh', desc: '无水印解析工具' },
-    { title: '视频下载', url: 'https://snapany.com/zh', desc: '万能视频图片解析下载快速、免费、简单. 从1000+平台保存视频和图片' }
+    { title: '视频下载', url: 'https://snapany.com/zh', desc: '万能视频图片解析下载快速、免费、简单. 从1000+平台保存视频和图片' },
+    { title: 'Ssins', url: 'https://sssinstagram.com/zh', desc: '通过sssInstagram，您可以无限量下载高质量的照片和视频！' },
+    { title: 'fastdl', url: 'https://fastdl.app/zh', desc: '下载单个或多个' }
+    
 ];
 
 // ==========================================
