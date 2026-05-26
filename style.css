@@ -37,57 +37,17 @@ body {
 }
 
 /* =========================================
-   动态声波/数据流背景
+   在线图片背景
 ========================================= */
 body::before {
     content: '';
     position: fixed;
     top: 0; left: 0; width: 100vw; height: 100vh;
-    background: linear-gradient(-45deg, #1a0b33, #3a1063, #152b52, #14082e);
-    background-size: 400% 400%;
-    animation: cyberGradient 15s ease infinite;
+    background-image: url('https://i.postimg.cc/XnyfPnYh/2ad6fcfa18250882eb59671707a8bb4a-origin(1).jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     z-index: -4;
-}
-
-@keyframes cyberGradient {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-.wave-background {
-    position: fixed;
-    top: 0; left: 0; width: 100vw; height: 100vh;
-    z-index: -3;
-    overflow: hidden;
-    pointer-events: none;
-    opacity: 1; 
-}
-
-.wave-layer {
-    position: absolute;
-    width: 200vw; height: 200vw;
-    border-radius: 43% 57% 40% 60% / 40% 45% 55% 60%;
-    border: 2px solid rgba(0, 255, 255, 0.35);
-    box-shadow: 0 0 20px rgba(0, 255, 255, 0.15), inset 0 0 50px rgba(0, 255, 255, 0.1);
-    animation: waveSpin 20s infinite linear;
-}
-
-.wave-layer:nth-child(1) { top: 40%; left: -50%; background: rgba(255, 0, 255, 0.05); border-color: rgba(255, 0, 255, 0.4); animation-duration: 25s; }
-.wave-layer:nth-child(2) { top: 60%; left: -30%; background: rgba(0, 255, 255, 0.05); animation-direction: reverse; animation-duration: 30s; }
-.wave-layer:nth-child(3) { top: 50%; left: -60%; border-radius: 50% 50% 40% 60% / 60% 40% 50% 50%; border-color: rgba(150, 0, 255, 0.3); animation-duration: 22s; }
-
-@keyframes waveSpin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-.vignette {
-    position: fixed;
-    top: 0; left: 0; width: 100vw; height: 100vh;
-    background: radial-gradient(circle at center, transparent 50%, rgba(0, 0, 0, 0.4) 100%);
-    pointer-events: none;
-    z-index: -1;
 }
 
 /* =========================================
