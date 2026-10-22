@@ -43,7 +43,10 @@ let bookmarks = JSON.parse(localStorage.getItem('bookmarks')) || [
     { title: 'Hellotik', url: 'https://www.hellotik.app/zh', desc: '无水印解析工具' },
     { title: '视频下载', url: 'https://snapany.com/zh', desc: '万能视频图片解析下载快速、免费、简单. 从1000+平台保存视频和图片' },
     { title: 'Ssins', url: 'https://sssinstagram.com/zh', desc: '通过sssInstagram，您可以无限量下载高质量的照片和视频！' },
-    { title: 'fastdl', url: 'https://fastdl.app/zh', desc: '下载单个或多个' }
+    { title: 'fastdl', url: 'https://fastdl.app/zh', desc: '下载单个或多个' },
+    { title: 'md', url: 'https://gjw02.github.io/md/', desc: 'inbox备份转md文件' },
+{ title: 'glados', url: 'https://glados-facility.com/', desc: '学术机场' },
+{ title: 'mojie', url: 'https://mojie.2gou.ren/login', desc: '魔戒' }
     
 ];
 
