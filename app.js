@@ -36,6 +36,8 @@ let bookmarks = JSON.parse(localStorage.getItem('bookmarks')) || [
     { title: '图片美化', url: 'https://imgupscaler.ai', desc: '寻找设计灵感' },
     { title: 'ins下载器', url: 'https://saveinta.com/en', desc: 'Down Instagram Video' },
     { title: '无水印下载', url: 'https://dy.kukutool.com/', desc: '无水印解析' },
+    { title: 'Twitter 视频下载器', url: 'https://snapvid.net/zh-cn1/twitter-downloader/', desc: '适用于Android的应用程序 - 支持多个平台：TikTok、Instagram、Facebook、Twitter' },
+    { title: 'Xdown', url: 'https://xdown.app/zh-cn/', desc: '下载 Twitter 视频' },
     { title: 'po18', url: 'https://www.po18dk.com/', desc: '小说网' },
     { title: '零界', url: 'https://xn--koy113e.com/', desc: '' },
     { title: 'seedhub', url: 'https://www.seedhub.cc/', desc: '海量电影资源' },
